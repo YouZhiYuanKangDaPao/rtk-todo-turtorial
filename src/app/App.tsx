@@ -1,9 +1,15 @@
-import React from 'react';
+import React from "react";
+
+import AddTodo from "../features/todoList/AddTodo";
+import TodoList from "../features/todoList/TodoList";
+import Footer from "../features/visibilityFilter/Footer";
 
 function App() {
   return (
     <div>
-      hello, World
+      <AddTodo />
+      <TodoList />
+      <Footer />
     </div>
   );
 }

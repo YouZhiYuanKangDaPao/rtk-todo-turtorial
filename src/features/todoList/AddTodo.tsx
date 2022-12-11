@@ -1,22 +1,31 @@
-import {FC, useState} from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react'
+import { useDispatch } from 'react-redux'
 import { addTodo } from './todoSlice';
 
-export defalut AddTodo:FC = () => {
+export default function AddTodo(): JSX.Element {
     const dispatch = useDispatch();
-    const [text,setText] = useState('');
+    const [text, setText] = React.useState('');
 
-    function handleChange(e:{target:HTMLInputElement;}) {
+    function handleChange(e: { target: HTMLInputElement; }) {
         setText(e.target.value);
     }
 
-    function handleSubmit(e:any) {
-        e.preventDefault();
-        if(!text.trim()) {
+    function handleSubmit(e: any) {
+        e.preventDefault()
+
+        if (!text.trim()) {
             return
         }
+        // @ts-ignore
         dispatch(addTodo(text))
-        setText('')
+
+        setText('');
     }
-    return<></>
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <input value={text} onChange={handleChange} />
+            <button type="submit">Add Todo</button>
+        </form>
+    )
 }
